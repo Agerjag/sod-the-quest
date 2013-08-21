@@ -1,0 +1,25 @@
+application: stq-dev
+version: alpha
+runtime: python27
+api_version: 1
+threadsafe: True
+
+
+handlers:
+
+- url: /static/(.*)
+  static_files: static/\1
+  upload: static/(.*)
+
+- url: /.*
+  script: main.app
+
+builtins:
+- remote_api: on
+- deferred: on
+
+libraries:
+- name: PIL
+  version: latest
+- name: jinja2
+  version: latest
