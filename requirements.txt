@@ -2,3 +2,4 @@ PIL
 jinja2
 mock
 nose
+gae-sdk
