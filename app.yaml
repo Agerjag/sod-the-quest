@@ -11,6 +11,12 @@ handlers:
   static_files: static/\1
   upload: static/(.*)
 
+- url: /input.*
+  script: endpoints.input.handler
+
+- url: /output.*
+  script: endpoints.output.handler
+
 - url: /.*
   script: main.app
 

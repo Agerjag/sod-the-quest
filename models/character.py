@@ -1,7 +1,7 @@
 from google.appengine.ext import ndb
 
 
-class Character(ndb):
+class Character(ndb.Model):
     """
 
     """
@@ -37,34 +37,34 @@ class Character(ndb):
     primary_stat = ndb.StringProperty(indexed=False, default="")
 
     # Skills
-    acrobatics = ndb.StructuredProperty(modelclass=Acrobatics, default=None)
-    appraise = ndb.StructuredProperty(modelclass=Appraise, default=None)
-    bluff = ndb.StructuredProperty(modelclass=Bluff, default=None)
-    climb = ndb.StructuredProperty(modelclass=Climb, default=None)
-    craft = ndb.StructuredProperty(modelclass=Craft, default=None, repeated=True)
-    diplomacy = ndb.StructuredProperty(modelclass=Diplomacy, default=None)
-    disable_device = ndb.StructuredProperty(modelclass=DisableDevice, default=None)
-    disguise = ndb.StructuredProperty(modelclass=Disguise, default=None)
-    escape_artist = ndb.StructuredProperty(modelclass=EscapeArtist, default=None)
-    fly = ndb.StructuredProperty(modelclass=Fly, default=None)
-    handle_animal = ndb.StructuredProperty(modelclass=HandleAnimal, default=None)
-    heal = ndb.StructuredProperty(modelclass=Heal, default=None)
-    intimidate = ndb.StructuredProperty(modelclass=Intimidate, default=None)
-    knowledge = ndb.StructuredProperty(modelclass=Knowledge, default=None, repeated=True)
-    linguistics = ndb.StructuredProperty(modelclass=Linguistics, default=None)
-    perception = ndb.StructuredProperty(modelclass=Perception, default=None)
-    perform = ndb.StructuredProperty(modelclass=Perform, default=None, repeated=True)
-    profession = ndb.StructuredProperty(modelclass=Profession, default=None, repeated=True)
-    ride = ndb.StructuredProperty(modelclass=Ride, default=None)
-    sense_motive = ndb.StructuredProperty(modelclass=SenseMotive, default=None)
-    slight_of_hand = ndb.StructuredProperty(modelclass=SlightOfHand, default=None)
-    spellcraft = ndb.StructuredProperty(modelclass=Spellcraft, default=None)
-    stealth = ndb.StructuredProperty(modelclass=Stealth, default=None)
-    survival = ndb.StructuredProperty(modelclass=Survival, default=None)
-    swim = ndb.StructuredProperty(modelclass=Swim, default=None)
-    use_magic_device = ndb.StructuredProperty(modelclass=UseMagicDevice, default=None)
-    concentration = ndb.StructuredProperty(modelclass=Concentration, default=None)
-    
+    # acrobatics = ndb.StructuredProperty(modelclass=Acrobatics, default=None)
+    # appraise = ndb.StructuredProperty(modelclass=Appraise, default=None)
+    # bluff = ndb.StructuredProperty(modelclass=Bluff, default=None)
+    # climb = ndb.StructuredProperty(modelclass=Climb, default=None)
+    # craft = ndb.StructuredProperty(modelclass=Craft, default=None, repeated=True)
+    # diplomacy = ndb.StructuredProperty(modelclass=Diplomacy, default=None)
+    # disable_device = ndb.StructuredProperty(modelclass=DisableDevice, default=None)
+    # disguise = ndb.StructuredProperty(modelclass=Disguise, default=None)
+    # escape_artist = ndb.StructuredProperty(modelclass=EscapeArtist, default=None)
+    # fly = ndb.StructuredProperty(modelclass=Fly, default=None)
+    # handle_animal = ndb.StructuredProperty(modelclass=HandleAnimal, default=None)
+    # heal = ndb.StructuredProperty(modelclass=Heal, default=None)
+    # intimidate = ndb.StructuredProperty(modelclass=Intimidate, default=None)
+    # knowledge = ndb.StructuredProperty(modelclass=Knowledge, default=None, repeated=True)
+    # linguistics = ndb.StructuredProperty(modelclass=Linguistics, default=None)
+    # perception = ndb.StructuredProperty(modelclass=Perception, default=None)
+    # perform = ndb.StructuredProperty(modelclass=Perform, default=None, repeated=True)
+    # profession = ndb.StructuredProperty(modelclass=Profession, default=None, repeated=True)
+    # ride = ndb.StructuredProperty(modelclass=Ride, default=None)
+    # sense_motive = ndb.StructuredProperty(modelclass=SenseMotive, default=None)
+    # slight_of_hand = ndb.StructuredProperty(modelclass=SlightOfHand, default=None)
+    # spellcraft = ndb.StructuredProperty(modelclass=Spellcraft, default=None)
+    # stealth = ndb.StructuredProperty(modelclass=Stealth, default=None)
+    # survival = ndb.StructuredProperty(modelclass=Survival, default=None)
+    # swim = ndb.StructuredProperty(modelclass=Swim, default=None)
+    # use_magic_device = ndb.StructuredProperty(modelclass=UseMagicDevice, default=None)
+    # concentration = ndb.StructuredProperty(modelclass=Concentration, default=None)
+    #
     @property
     def strength(self):
         return int(self.base_strength) + int(self.temp_strength)
@@ -79,15 +79,15 @@ class Character(ndb):
 
     @property
     def intelligence(self):
-        return int(self.intelligence) + int(self.temp_intelligence)
+        return int(self.base_intelligence) + int(self.temp_intelligence)
 
     @property
     def wisdom(self):
-        return int(self.wisdom) + int(self.temp_wisdom)
+        return int(self.base_wisdom) + int(self.temp_wisdom)
 
     @property
     def charisma(self):
-        return int(self.charisma) + int(self.temp_charisma)
+        return int(self.base_charisma) + int(self.temp_charisma)
 
     @property
     def strength_bonus(self):
@@ -118,7 +118,7 @@ class Character(ndb):
         return _stat_bonus(getattr(self, unicode(self.primary_stat), 0))
 
 
-class BaseSkill(ndb):
+class BaseSkill(ndb.Model):
     ranks = ndb.IntegerProperty(indexed=False, default=0)
     misc_modifier = ndb.IntegerProperty(indexed=False, default=0)
     class_skill = ndb.BooleanProperty(indexed=False, default=False)
