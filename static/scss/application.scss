@@ -1,0 +1,610 @@
+// Global Foundation Settings
+@import "settings";
+
+// Comment out this import if you don't want to use normalize
+@import "normalize";
+
+// Comment out this import if you are customizing you imports below
+@import "foundation";
+
+// Import specific parts of Foundation by commenting the import "foundation"
+// and uncommenting what you want below. You must uncomment the following if customizing
+
+// @import "foundation/components/global"; // *always required
+// @import "foundation/components/grid";
+
+//
+// Use this grid if you want to start using the new Foundation 5 grid early.
+// It will change breakpoints to min-width: 640px and 1024px.
+//
+// @import "foundation/components/grid-5";
+//
+
+// @import "foundation/components/visibility";
+// @import "foundation/components/block-grid";
+// @import "foundation/components/type";
+// @import "foundation/components/buttons";
+// @import "foundation/components/forms"; // *requires components/buttons
+// @import "foundation/components/custom-forms"; // *requires components/buttons, components/forms
+// @import "foundation/components/button-groups"; // *requires components/buttons
+// @import "foundation/components/dropdown-buttons"; // *requires components/buttons
+// @import "foundation/components/split-buttons"; // *requires components/buttons
+// @import "foundation/components/flex-video";
+// @import "foundation/components/section";
+// @import "foundation/components/top-bar";  // *requires components/grid
+// @import "foundation/components/orbit";
+// @import "foundation/components/reveal";
+// @import "foundation/components/joyride";
+// @import "foundation/components/clearing";
+// @import "foundation/components/alert-boxes";
+// @import "foundation/components/breadcrumbs";
+// @import "foundation/components/keystrokes";
+// @import "foundation/components/labels";
+// @import "foundation/components/inline-lists";
+// @import "foundation/components/pagination";
+// @import "foundation/components/panels";
+// @import "foundation/components/pricing-tables";
+// @import "foundation/components/progress-bars";
+// @import "foundation/components/side-nav";
+// @import "foundation/components/sub-nav";
+// @import "foundation/components/switch";
+// @import "foundation/components/magellan";
+// @import "foundation/components/tables";
+// @import "foundation/components/thumbs";
+// @import "foundation/components/tooltips";
+// @import "foundation/components/dropdown";
+
+@import "settings";
+@import "custom/fonts";
+@import "font_awesome";
+@import "../../vendor/scss/zurb/foundation";
+@import "dropdown";
+
+$label-gray:lighten($grayLight, 20%);
+$small-screen: 784px;
+
+body {
+  background-color: #FFFFFF;
+}
+.header-logo {
+  font-family: "Gibson-SemiBold";
+  font-size: 12pt !important;
+  
+  .custom-branding {
+    font-family: "Gibson-Regular";
+  }
+
+  .custom-symbol {
+    margin-right: -0.1em;
+  }
+}
+
+.shaded {
+  background-color: $secondary-color;
+}
+
+.top-bar + .top-bar-attached {
+  margin-top: -$topbar-margin-bottom;
+  margin-bottom: $topbar-margin-bottom;
+  width: 100% !important;
+  //float: left;
+}
+
+.search-box {
+  margin-bottom: emCalc(10px) !important;
+  padding-top: emCalc(20px);
+  padding-left: emCalc(10px);
+  padding-right: emCalc(10px);
+  padding-bottom: emCalc(20px);
+  border-bottom: 1px solid $secondary-color;
+  position:relative;
+  
+  .no-bottom-margin {
+    margin-bottom: 0;
+  }
+  .stretcher {
+    overflow:hidden;
+  }
+  form {
+    margin: 0;
+    padding: 0;
+  }
+  input {
+    width:100%;
+  }
+  button {
+    background-color:$grayLight;
+    border-color:#777;
+    float:right;
+    padding:emCalc(6px) emCalc(7px) emCalc(7px) emCalc(8px);
+    margin-left: emCalc(5px);
+    &:hover {
+      background-color:#777;
+    }
+  }
+
+  .dropdown-menu {
+    width: 100%;
+  }
+}
+
+.search-logo {
+  padding: 0;
+  margin: 0;
+  right: emCalc(20px);
+  top: emCalc(15px);
+  position: absolute;
+  height: emCalc(42px);
+  width: emCalc(133px);
+}
+
+$filingsMargin: 2px;
+$filingsMarginSmall: 10px;
+.recent-filings {
+  .filing {
+    .left-box {
+      line-height:20px;
+      padding:5px;
+      min-height:30px;
+      border:0;
+      margin-bottom:$filingsMargin;
+      background-color:$grayLighter;
+      word-break:break-all;
+    }
+    .company-name {
+      font-weight:bold;
+    }
+    .filing-date {
+      color:$grayLight;
+      float:right;
+      padding-right:10px;
+    }
+    .form-type {
+      padding:0;
+      .button {
+        margin-left:$filingsMargin;
+        height:30px;
+        min-width:91px;
+        margin-bottom:$filingsMargin;
+      } 
+    }
+    @media only screen and (max-width: 767px) {
+      .form-type {
+        .button {
+          padding-top:emCalc(12px);
+          margin-left:5px;
+          line-height:31px;
+          height:50px;
+          margin-left:$filingsMarginSmall;
+        }
+      }
+      .left-box {
+        min-height:50px;
+        margin-bottom:$filingsMarginSmall;
+      }
+      .company-name {
+        display:block;
+        font-size:18px;
+      }
+      .filing-date {
+        float:none;
+      }
+    }
+  }
+  #col-headers {
+    color:$grayLight;
+    #company-header {
+      padding-left:5px;
+    }
+    #date-header {
+      padding-right:54px;
+    }
+  }
+  div#table_title {
+    font-size:100%;
+    margin-bottom:emCalc(10px);
+    color:$grayLight;
+  }
+}
+#loadMore {
+  margin-top:20px;
+  margin-bottom:40px;
+}
+#filing_info:nth-child(odd) {
+    .left-box {
+      background-color:#fafafa;
+    }
+  }
+@media only screen and (max-width: $small-screen) {
+  .recent-filings {
+    table {
+      width: 100%;
+      font-size: 80%;
+      th {
+        white-space: wrap;
+      }
+    }
+  }
+}
+
+.company-result {
+  padding:0;
+  margin-bottom: emCalc(20px);
+  border-left: 1px dotted $secondary-color;
+  .company-detail {
+    table {
+      font-size: emCalc(12px);
+      margin:0;
+      th {
+        font-family: "Gibson-Regular";
+      }
+    }
+    table.scroll {
+      thead,tbody {
+        display: block;
+      }
+      tbody {
+        max-height: 200px;
+        overflow-y: auto;
+      }
+    }
+  }
+}
+
+.borderless {border: 0 !important;}
+
+.issue-section {
+  margin-bottom: emCalc(5px) !important;
+  .title-issues {
+    height:50px;
+    a {
+      padding:0px !important;
+    }
+    i {
+      width: 15px;
+      text-align:center;
+    }
+    div.issue-section-title {
+      padding-top: 15px;
+
+    }
+    div.issue-count {
+      font-size:40px!important;
+      vertical-align:middle;
+      text-align:center;
+      background-color: $orange;
+      padding:5px;
+      color: #fff;
+      font-weight: bold;
+      border-left: 5px solid white;
+    }
+    span.issue-title-text {
+      font-size:20px;
+      font-weight:bold;
+      color: $gray;
+    }
+    @media only screen and (max-width: $small-screen) {
+      div.issue-count {
+        font-size:24px!important;
+        padding:13px;
+      }
+      span.issue-title-text {
+        font-size:16px;
+      }
+    }
+  }
+  &.issues-errors {
+    div.issue-count {
+      background-color: #FF2B31;
+    }
+  }
+  &.issues-none {
+    section .title {
+      cursor: default;
+      &:hover {
+        background-color:$section-title-bg;
+      }
+    }
+    cursor: default;
+    i.icon-caret-right, i.icon-caret-left {
+      visibility:hidden;
+    }
+    div.issue-count {
+      background-color:#b0dc01;
+    }
+  }
+}
+div.title.title-issues.no-issues {
+  background-color:#efefef !important;
+}
+div.title.how-calc-row {
+  background-color:#ffffff !important;
+  margin-bottom:10px!important;
+}
+.info-row {
+  border-bottom: 2px solid $grayLighter;
+  margin-bottom:10px!important;
+}
+
+div.info-panel {
+  @include panel;
+  border:0!important;
+  color:$gray;
+  margin-bottom:10px;
+  &.form-filed {
+    .info-text {
+      font-size:emCalc(20px);
+      margin-top:emCalc(12px);
+      @media only screen and (max-width: $small-screen) {
+        margin-top:0;
+      }
+      .company-name {
+        padding-right:0;
+        @media only screen and (max-width: $small-screen) {
+          padding-right:20px;
+        }
+      }
+    }
+  }
+  &.filing-dates {
+    padding: 0;
+    font-size:16px;
+    min-height: 113px;
+    position:relative;
+    %inner-box {
+      padding: 20px;
+    }
+    .filing-date {
+      @extend %inner-box;
+      border-right: 1px solid $label-gray;
+      min-height: 113px;
+      position:absolute;
+      top:0;
+      bottom:0;
+      .filing-info-panel {
+        max-width:120px;
+        margin-left:auto;
+        margin-right:auto;
+        word-break:break-all;
+        .calendar-div {
+          position:absolute;
+          top:24px;
+          font-size:14px;
+          margin-top:emCalc(20px);
+        }
+        .filing-date-info {
+          margin-left:16px;
+          margin-top:emCalc(20px);
+          .filing-end-date {
+            font-size:18px;
+          }
+        }
+      }
+    }
+    .period-end {
+      @extend %inner-box;
+      min-height: 113px;
+      position:absolute;
+      right:0;
+      top:0;
+      bottom:0;
+      .period-info-panel {
+        max-width:110px;
+        margin-left:auto;
+        margin-right:auto;
+        margin-top:emCalc(20px);
+        word-break:break-all;
+        .period-end-date {
+          font-size:18px;
+          word-break:break-all;
+        }
+      }
+    }
+  }
+  &.fact-count {
+    text-align:center!important;
+    vertical-align:middle;
+    background-color:$blue;
+    font-weight:bold;
+    color:#FFF;
+    .num-facts {
+      font-size:emCalc(40px);
+      margin-top:emCalc(2px);
+    }
+    .facts {font-size: emCalc(20px)}
+  }
+  &.company-info {
+    color: $gray;
+    .name {
+      font-size:20px;
+      font-weight:bold;
+    }
+    .info {
+      padding-top: 10px;
+      font-size:15px;
+    }
+  }
+  &.concept {
+    padding:0 17px 0 17px !important;
+    color:$gray;
+    text-align: center;
+    white-space:nowrap;
+    font-size:18px;
+    position:relative;
+    %inner-box {
+      padding:0 !important;
+    }
+    .standard {
+      @extend %inner-box;
+      border-bottom: 1px solid $label-gray;
+    }
+    .standard-num {
+      @extend %inner-box;
+      border-bottom: 1px solid $label-gray;
+    }
+    .extended {
+      @extend %inner-box;
+    }
+    .extended-num {
+      @extend %inner-box;
+    }
+    .concept-divide {
+      border-right: 1px solid $label-gray;
+      max-width:1px;
+      position:absolute;
+      top:0;
+      bottom:0;
+      left:66%;
+    }
+  }
+  &.stat {
+    background-color: $blue;
+    color: #fff;
+    text-align:center;
+    font-weight: bold !important;
+    margin-bottom:0!important;
+    .quantity {
+      font-size:emCalc(40px);
+    }
+  }
+}
+
+div.warning-container {
+  padding-left:5px;
+  padding-right:5px;
+}
+
+div#efm_warning {
+  border:0;
+  color:$blue;
+  background-color:lighten($blue, 50%);
+  margin-bottom: emCalc(10px);
+  div.warning-symbol {
+    font-size:emCalc(36px);
+  }
+  div.warning-text {
+    color:$black;
+    padding-top:8px;
+    font-size:emCalc(18px);
+    #efm-warn-tooltip {
+      color:$blue;
+    }
+  }
+}
+
+.detail-issues {
+  padding-top:0px !important;
+  padding-bottom:0px !important;
+  .issue-row {
+    margin-top: emCalc(5px);
+    padding: emCalc(10px);
+    background-color:#f3f3f3;
+  }
+  .issue-name {
+    font-weight:bold;
+    padding-left:0;
+    padding-right:0;
+  }
+  .issue-detail {
+    padding-left:0;
+    padding-right:0;
+    word-break:break-all;
+  }
+  .calc-concept {
+    font-size:20px;
+    font-weight:bold;
+    word-break:break-all;
+    @media only screen and (max-width: $small-screen) {
+      text-align:center;
+    }
+  }
+  .calc-link-role {
+    margin-top:5px;
+    word-break:break-all;
+    color:$grayLight;
+    @media only screen and (max-width: $small-screen) {
+      text-align:center;
+      font-size:14px;
+    }
+  }
+  .calc-val, .calc-val-label {
+    margin-bottom:0;
+    margin-top:5px;
+    line-height:100%
+  }
+  .calc-val-label {
+    color:$grayLight;
+  }
+}
+
+.text-centered-left {
+  width:70%;
+  @media only screen and (max-width: $small-screen) {
+    width:50%;
+  }
+  float:left;
+  text-align:right;
+  padding-right:5px;
+}
+
+.text-centered-right {
+  width:30%;
+  @media only screen and (max-width: $small-screen) {
+    width:50%;
+  }
+  float:right;
+  text-align:left;
+  padding-left:5px;
+}
+
+.bold-text {
+  font-family: Gibson-SemiBold !important;
+}
+
+.ten-gutter {
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+}
+.link-row {
+  padding-top:10px;
+  margin-bottom:80px!important;
+}
+@media only screen and (max-width: $small-screen) {
+  .link-row {
+    padding-top:10px;
+    margin-bottom:20px!important;
+  }
+}
+.how-calc-tip {
+  padding:10px!important;
+}
+
+div.efm-update-container {
+  fieldset {
+    background-color:$grayLighter;
+  }
+  legend {
+    background-color:transparent;
+  }
+}
+
+@media print {
+  div:not(.reveal-modal) {
+    display: block;
+  }
+}
+
+.subtext {
+  color:$label-gray;
+  font-size:15px;
+}
+
+@media only screen and (max-width: $small-screen) {
+  .atlwdg-trigger {
+    display:none !important;
+  }
+}
+.hidden-element {
+  visibility: hidden;
+}
+
