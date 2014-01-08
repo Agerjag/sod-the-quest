@@ -14,12 +14,44 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-import webapp2
+#import webapp2
+from bottle import default_app, route, error, redirect, request, debug
+from jinja2 import Environment, FileSystemLoader
+from os.path import abspath
+import sys
+tempenv = abspath(__file__)
+JINJA_ENV = Environment(
+    loader=FileSystemLoader(tempenv[:tempenv.rfind('/')] + '/tmpls/'),
+    extensions=['jinja2.ext.autoescape'])
 
-class MainHandler(webapp2.RequestHandler):
-    def get(self):
-        self.response.write('Yo mamma goes here.')
 
-app = webapp2.WSGIApplication([
-    ('/', MainHandler)
-], debug=True)
+@route('/')
+def root():
+  redirect('/characters')
+
+
+@route('/characters')
+def characters():
+  try:
+    query = request.query.get('character', '')
+    page_title = 'Sod The Quest'
+    tpl = JINJA_ENV.get_template('base-template.tpl')
+  except:
+    print ("EXCEPTION CAUGHT!")
+    print ("{}".format(sys.exc_info()[0]))
+    return
+  return tpl.render(page_title=page_title, query=query)
+
+
+@route('/create_character')
+def create_character():
+    try:
+      page_title = 'STQ - Character Creation'
+      tpl = JINJA_ENV.get_template('create-character.tpl')
+    except:
+      print ("EXCEPTION CAUGHT!")
+      print ("{}".format(sys.exc_info()[0]))
+      return
+    return tpl.render(page_title=page_title)
+
+app = default_app()
